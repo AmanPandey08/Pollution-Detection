@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Go Green</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+    />
+
+    <!-- Custom File's Link -->
+    <style>
+      .banner_wrapper {
+        height: 100%;
+        margin: 0;
+        /* The image used */
+        background-image: url("https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_664,h_242/https://aeramaxpro.com/wp-content/uploads/aeramax/2017/01/china-smog-6.gif");
+
+        /* Full height */
+        height: 50%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      /* 1 General */
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        /* Background Color */
+        --primary-color: #429f1d;
+        --secondary-color: #333333;
+        --bg-black: #111111;
+        --bg-dark: #1c1819;
+        --bg-white: #fff;
+        --bg-gray: #e5e5e5;
+
+        /* Text Color */
+        --primary-text: #429f1d;
+        --text-white: #fff;
+        --text-black: #325b17;
+
+        /* Font Family */
+        --primary-font: "Ubuntu", sans-serif;
+        --secondary-font: "Open Sans", sans-serif;
+      }
+
+      body {
+        font-family: var(--secondary-font);
+        background-color: var(--bg-white);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* 1 Custom CSS */
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--bg-dark-blue);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      .main-btn {
+        display: inline-block;
+        border-radius: 50px;
+        padding: 10px 27px;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-text);
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: linear-gradient(
+          to right,
+          var(--primary-color) 50%,
+          transparent 50%
+        );
+        background-size: 200% 100%;
+        background-position: right bottom;
+        transition: all 0.5s ease-out;
+      }
+      .main-btn:hover {
+        color: var(--text-white);
+        background-position: left bottom;
+      }
+
+      h1 {
+        font-size: 80px;
+        line-height: 1.2;
+        font-weight: 400;
+        color: var(--text-black);
+        margin-bottom: 20px;
+        font-family: var(--primary-font);
+      }
+
+      h1 span {
+        color: var(--primary-color);
+      }
+
+      h2 {
+        font-weight: 700;
+        font-size: 35px;
+        margin-bottom: 15px;
+        color: var(--text-black);
+        font-family: var(--primary-font);
+      }
+
+      h3 {
+        font-weight: 700;
+        font-size: 28px;
+        margin-bottom: 15px;
+        color: var(--text-black);
+        font-family: var(--primary-font);
+      }
+
+      h5 {
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--primary-text);
+      }
+
+      p {
+        color: var(--text-black);
+        font-size: 18px;
+        line-height: 1.7;
+        letter-spacing: 1px;
+        font-weight: 300;
+      }
+
+      /* 2 Navbar */
+      .header_wrapper .navbar {
+        padding: 15px 0;
+        -webkit-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+      }
+
+      .header_wrapper .navbar-brand img {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .header_wrapper .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      .header_wrapper .nav-item {
+        margin: 0 10px;
+      }
+
+      .header_wrapper .nav-item .nav-link {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: var(--text-black);
+        display: inline-block;
+      }
+
+      .header_wrapper .nav-item .nav-link.active,
+      .header_wrapper .nav-item .nav-link:hover {
+        color: var(--primary-text);
+      }
+
+      .header-scrolled {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-white);
+        -webkit-box-shadow: 0 4px 6px 0 rgba(12, 0, 46, 0.05);
+        box-shadow: 0 4px 6px 0 rgba(12, 0, 46, 0.05);
+      }
+
+      /* 3 Banner */
+      .banner_wrapper {
+        padding-top: 100px;
+      }
+
+      .banner_wrapper .top-menu .card {
+        height: 275px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .banner_wrapper .top-menu .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms ease;
+      }
+
+      .banner_wrapper .top-menu .card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* 4 About */
+      .about_wrapper {
+        background-color: var(--bg-gray);
+        padding-bottom: 130px;
+      }
+
+      .about_wrapper .card {
+        z-index: 10;
+        right: -25%;
+        top: 30%;
+      }
+
+      /* 5 menu wrapper */
+      .menu_wrapper {
+        width: 100%;
+        height: auto;
+        background-image: url("");
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-color: var(--bg-gray);
+      }
+
+      .menu_wrapper .row {
+        padding-top: 70px;
+      }
+
+      .menu_wrapper .card {
+        background-color: var(--secondary-color);
+      }
+
+      .menu_wrapper .card h3,
+      .menu_wrapper .card p {
+        color: var(--text-white);
+      }
+
+      .menu_wrapper .card h3 span {
+        background-color: var(--primary-color);
+        width: 70px;
+        height: 70px;
+        display: inline-block;
+        text-align: center;
+        line-height: 70px;
+        font-size: 40px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+
+      /* 6 offers */
+      .offers_wrapper .card {
+        height: 100%;
+        min-height: 260px;
+        box-shadow: 0 0 16px 4px var(--bg-dark-blue);
+        background-position: 50% 50%;
+        background-size: cover;
+      }
+
+      .offers_wrapper .card .offer-text {
+        width: 50%;
+        height: 100%;
+        background-color: var(--bg-black);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* 7 review */
+
+      .review_wrapper {
+        width: 100%;
+        height: auto;
+        background-image: url("https://images.unsplash.com/photo-1582980752625-10783b273e2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cG9sbHV0aW9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+      }
+
+      .review_wrapper .carousel-item {
+        min-height: 500px;
+        height: 100%;
+      }
+
+      .review_wrapper .carousel-item img {
+        width: 65px;
+        margin-bottom: 20px;
+      }
+
+      .review_wrapper .carousel-control-prev-icon,
+      .review_wrapper .carousel-control-next-icon {
+        filter: brightness(0.1);
+      }
+
+      /* 8 footer */
+      .footer_wrapper {
+        background-color: var(--bg-white);
+        padding: 20px 0;
+      }
+
+      .footer_wrapper .footer-logo img {
+        width: 100px;
+      }
+
+      .footer_wrapper .social-icon li {
+        margin: 6px;
+      }
+
+      .footer_wrapper .social-icon a {
+        width: 35px;
+        height: 35px;
+        line-height: 30px;
+        font-size: 14px;
+        display: inline-block;
+        border: 2px solid var(--bg-black);
+        color: var(--text-black);
+        text-align: center;
+        border-radius: 100%;
+        -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+
+      .footer_wrapper .social-icon a:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--text-white);
+        box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
+        transform: translateY(-3px);
+      }
+
+      .footer_wrapper .copyright-text p {
+        font-size: 11px;
+        line-height: 20px;
+        font-weight: 600;
+      }
+
+      .footer_wrapper .copyright-text a {
+        color: var(--primary-color);
+      }
+
+      /*Responsive Design*/
+      @media (max-width: 1199px) {
+        /* custom css */
+        h1 {
+          font-size: 65px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        /* custom css */
+
+        h2 {
+          font-size: 30px;
+          line-height: 40px;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        /* 2 Navbar */
+        .header_wrapper .navbar-brand img {
+          max-width: 80px;
+        }
+
+        .header-scrolled {
+          height: auto;
+        }
+        .header_wrapper .navbar-collapse {
+          margin-top: -2px;
+        }
+        .header_wrapper .menu-navbar-nav {
+          text-align: center;
+          background-color: var(--bg-white);
+          padding-bottom: 15px;
+        }
+
+        .header_wrapper .nav-item .nav-link {
+          margin-top: 15px;
+        }
+
+        .header_wrapper .navbar-brand img {
+          max-width: 67px;
+          height: auto;
+        }
+
+        /* banner */
+        .banner_wrapper {
+          padding-top: 70px;
+        }
+
+        .banner_wrapper .top-menu .card {
+          height: 200px;
+        }
+
+        /* About */
+        .about_wrapper {
+          padding-bottom: unset;
+        }
+
+        .about_wrapper .card {
+          z-index: 10;
+          right: unset;
+          top: unset;
+        }
+      }
+
+      @media (max-width: 767px) {
+        /* custom css */
+        h1 {
+          font-size: 40px;
+          line-height: 48px;
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 24px;
+        }
+
+        /* Menu */
+        .menu_wrapper .row {
+          padding-top: 70px;
+        }
+
+        .menu_wrapper .card h3 span {
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          font-size: 30px;
+        }
+
+        /* offers */
+        .offers_wrapper .card .offer-text {
+          width: 65%;
+        }
+
+        /* review */
+        .carousel-caption {
+          bottom: 0;
+        }
+
+        .review_wrapper .carousel-item {
+          min-height: 460px;
+        }
+      }
+      .wrapper1 {
+        padding-bottom: unset;
+      }
+
+      i.custom {
+        font-size: 2em;
+        color: rgb(41, 160, 41);
+      }
+    </style>
+  </head>
+
+  <body
+    data-bs-spy="scroll"
+    data-bs-target=".navbar"
+    data-bs-offset="75"
+    action="/index"
+    method="GET"
+  >
+    <!-- <img
+      src="https://i.kinja-img.com/gawker-media/image/upload/s--5FPmv1yn--/c_fit,fl_progressive,q_80,w_636/cu6hvck25tsdhetygf2c.gif"
+      style="
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: cover;
+      " -->
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <!-- <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMcAAAB9CAMAAAAhiofnAAABMlBMVEX////3uSJKniL6uSJbAAD6vCK7oKFBnSJjCgzVliTRsyXZtipIoyNabyFkAAj7+PhWAABSAABiAAD28vKkhobs5OT//PPVw8NLAAD3tQDczc1ndTZseT/j19fy7OyadHWWbGz+89z4wkZAmg0wlAB3uF6WZWbOurv+9+eGTk/957yKW1z/xTrBqqrxsSPTshdXpDeZy4m0lZV6ODn97cr84qr72Izzy3D6xVP60oH6y2P82peCRUZ5RUZmHR1tKSltGhpZABF/NQigWgzAfQ3ioRhnGAByJgbJgwCqaBaMRBSWUhfUkA1xKRWkYh8+AAa4eiGAPhhyNxt/VRhRjyZfrkx5uWuDvnqZyZOlz6Ox1LFbKABhYyPn8+NXgB9gPBVPUwCmwJTO5MeAY01cRAuedSLnsQ46AAAI8UlEQVR4nO2bC1fbyBXHxzBS7TaLJEuybLV6GAcLI0sFyQ4PP2SITWICrNMNEEictnT7/b9C78zIxuySbELqlTir3zmMZyRZ3P/ceV5ZCGVkZGRkZGRkZGRkZGRkZGRk/J6USuxjM2E7vpsWTavVhM34bpiCdilpO76XUpukL5I247vZJBJKu6wgJGrKo5Bjm1v7kJT2aLvSn6AOQWef+7RdNUkvkZ0E7Xk0Hk03c7SfH3QgMZ6kjkAmaTtHC1sVSAw+SXsei006Q6lCmxW4BT6NerIWPQqzS9JOM57IX6yXkNAzk7TocXg2JFWuHRc3iWMUJUGDHocQapB2KvN5fO+ghNS+mqBJj4J3oXuU1vfnB9ocSGoECZr0GNSIuKPEteZHWsQ1zuCJzYReSNLS+t0ytwrtCqmDJ9awFDZVtO90tIhr5MZT06HRj4XtE+3wZvDE2pVBdAiq4QRW3W00XCvwdFVGgpy0Yd+KgPTADsUygLFIPqXIVZynpkMNokN8fPRyeDryCaPT4fjkGIt96ymt3XULl1+dvx5xe/ud9tZWa2ur3Xlx0PRPx0dlyXWeiBLZ6ktHr/3ci9Ym6dylOGSCNqudZuX0RBQbRqL2fSVeXjo6ze22StVW52CdqxC49YN2i4zB1f3m6A0WldT3E8GSxGFlv1rtHORAQC5mleQPXoCUzU7l9LjspnweURvSiX/Qah1UKqu5HMflFgEx61slVN2tvBQjPWlTv4TaK4/9ztYucwTnD5mAOz2gBNbv7dWhhFMsRHWlca6zz7HmxBXOxjTjn4+4Baest1C1+bqYYo+45XFzf68yc0KhwDE9P75dbGCVyn5pc/211E/r7pAvv8kdNFdjGf4obk6cPyjPHQLHuFxlb7PaHJftpA1+GL3/yo+NJU44PPO5OD98S7JEFjce5M+hcXHVVuWN6CVt8oNY0jCudZ/jRoflCW1T59xcGTQz7uTwkHQarlntjKQwjdOIIc16gX824vzzCS35byfxUa4wIP3F92OXVffG5TQGtGypMLN4Ak6YdY5RYd41CgvDVq6y3x4dh0kb/WuE6MifG+mTnuBzd3PHYjb2yGo79/IwfWOvdjheHFyhFeWIU+Jjw7sTozPmodW93ddi+uInPB7e1wH9AnrJkDW0k7szbyezlrU7KlqpW8MrxdG91RTHBt/yIWljBX/h3Dzb9F810jYXCvaxz63+isKbt6twmHvgFMAdRWlb93riP/7y2/z9F/wkWkkbfh85v/buT59le/viYmPj8vLy6upq5z1wDdwAlx+kdI1YCv648iW2GRcgiEgimnZ2dq6nn3Cqeoiz9s8vyniAGvB85/ojTtPQGxbfPVupPX9eWzD0+f0iMf3eEVKqXW2s4fR0dUX617Ptjaub6fXKzNDa9u30+nK7Ni/XVjbeT6cbd+Wd6c3OxvbKJ9xNyxyi58N/305pdOeWGQotZkqK05urFfBB7Xlt4/oWkShjrLS2fUO/Or29/g9OyWpRdrEjmIZnhxY0EWJobWMqOGFXMci6/Hbn4vKmRKK9vBsF8vSK9IydEpL5qM7rpqBG+XTEs3gpCtw1UcRY7HsCml6uvEeGLRWxKEaKw2xUnaCHRVwUuw66ubgA3+gN8gWxGCoN0U1YAUXNYyzhqJgHipgEpqaCMsB5VsaRyxtePYQcPYKxrZbAGUqelUXN6mMpBRtDwXIVXhd0ZlYei4HpROJafkaxKErgiHk5j4twxSC+ApMnuIanJD+JCCrdnCprMUXcxcW1RYq/RATvzPL1tAxWjEA6+/jDg/z1Hn9bAIofP4humoSo4Yd3zx6Crkgu4sUIWY7AAovAFlk3t1c/F9O0wDL6Pz/71oUJSFy5vP0Bp+lHQGYP/7Dy+fXuZ1n59KGfjskjRpPwT3/+dv4rSmlaJgJGF/aDo4e3fZ8BLj85TMHMcZ8AD7lh7hvg/MKomKrRimIcnuQK90ImvyEjd547T2OE15Ym3GSS+zolHOePC6PjKHXuQIKRxwWuMC743FcwmkxG/lka1lUzBFPVHS+wGlF+LT8pfD3DM3Gt37ACz9ENM0G/wJbD4ZV6rxdhSSpLkghI+OuRJFi202/iqNdzrcBJQI4AGgKA//9Bb+c8pZ9tZGRkZPwOCIauG0KcYQFNdRYjIBt1OKqzsqHOjgGmarLDMh1XBTW+GT3rmA/fR1/eU2nDDjzPgi2DaSuQUYhRth1L7GkIdV2NZ79JatAnGzy9BGm2yeLRCk1Nl26e5B65UogXiw1rdh8HCXboePzSgijqgG6mVSSHZDcqKA3yICoOBzplsIdopMKMASYKtB8Dph/pRbhMY29OyC79obtQJynfbdCKj3B8H5EHvct8viO4s0hswCKAasQj1eqx/9l1LaYjIJsKW6cXa908z3SgoCeg+GfIsu2GKqkCqHG5rtJQg9CzG/ScFVpL1mGIcYhfnglybcFQDIlUpOfxXaZDAZGGi/geVLMW6KLDdAjdQIljCmC7HcY6nAARtyK1rlOHwHoHnKbYSFjaCkUrxzrMKNYR9GQ9QFaDNHnBK4IOBekhVK8CfyQSoinQThyqA6ni7H0cuS7LritTHXUDGeRpJ1xpgyOFhuBBBSiR1Vjaol4vx7ENsxfMdTge0kUdeTxyiI6eQiTIoadpXZtah/i8oRIdaG4Z6IC6sJFlIrXvaE4/IP5EallHPNwOZEG7Wp4/zN7sfRol/mGIq6AAat1y5a6MdOi8FhPIW5rjeNBOiA7E93nS3AV3UQfczQJ/2LzjODyxHEY7KzTrAlLhe0vtH8iLhxRksOiZQSyH6ldx1yGGaaRdEVh/tiymAwU0HI3u6wBXFGWVvkWFBh4iz06MgU0uAfcuVwfiI880DfgfGsnoXajDiEhT+sS6kCcOQvG7UdBl+6rH7KFmCeEsVmV26dRgDMyAdTQes7lEIWMDKoKquml4S3xwqPIK7QBIhkxArKGzlUrECJ6GPOonh8Vs5cCYvfpIXz/gtfguMs+makPm4zVBYHjkkEm/CNc5gaIsbx7MyMjIyMjIyMjIyMjIyMjI+APwPzyfMSIvPGiSAAAAAElFTkSuQmCC"
+              class="img-fluid"
+              alt="logo"
+            /> -->
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-stream navbar-toggler-icon"></i>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav menu-navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#home"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#menu">Pollutions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#review">FAQs</a>
+              </li>
+              <li class="nav-item mt-3 mt-lg-0">
+                <a class="main-btn" href="https://forms.gle/HRcH8yaw7Lj4Hbq3A"
+                  >Join</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Navbar section exit -->
+
+    <!-- Banner section -->
+    <section id="home" class="banner_wrapper">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5 text-center text-lg-start order-lg-1 order-2">
+            <h1>
+              <span>Go Green</span>
+            </h1>
+            <h2 style="color: beige">Smart Pollution Tropper</h2>
+            <p style="color: #ffffff">
+              We detect pollution in a very smart way.There are pollution all
+              around you and for this you need a
+              <i>smart way</i>, a <i>smart machine</i>to detect and report.
+              Hence, this can help the citizens know about the condition of
+              their city.
+            </p>
+
+            <a
+              style="color: white"
+              class="main-btn mt-4"
+              href="https://forms.gle/HRcH8yaw7Lj4Hbq3A"
+              >Join The Beta Launch</a
+            >
+          </div>
+          <div class="col-lg-7 text-center order-lg-2 order-1"></div>
+        </div>
+        <!-- <div class="row top-menu mt-5">
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card">
+              <img
+                src="Images/litti-chokha-or-liti-choka-from-bihar-jharkhand-and-uttar-pradesh-is-stuffed-with-chana-sattu-served-with-alu-or-aloo-baingan-bharta-desi-ghee-lehsun-2FK07X0.jpg"
+                alt="menu"
+              />
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card">
+              <img
+                src="Images/Mochar_Ghonto_Recipe_with_Steps__to_clean_the_Plantain_flower__Traditional_Banana_Blossom_Curry_from_West_Bengal.jpg"
+                alt="menu"
+              />
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card">
+              <img
+                src="Images/bihari_dal_pitha_recipe_traditional_bihari_delicacy.jpg"
+                alt="menu"
+              />
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card">
+              <img
+                src="Images/bengali-traditional-food-patishapta-pitha-260nw-2044884164.webp"
+                alt="menu"
+              />
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+    <!-- Banner section exit -->
+
+    <!-- About section -->
+    <section id="about" class="about_wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-lg-5 mb-4 mb-lg-0 order-lg-1 order-2">
+            <div class="card rounded-0">
+              <div class="card-body pt-5">
+                <h4>About US</h4>
+                <p>
+                  “The future depends on what you do in the present” - M.K
+                  Gandhi<br />
+                  every person living on the planet is responsible for what we
+                  give back to our mother nature. we believe, together we can
+                  join hands to create a sustainable ecosystem.
+                  <br />Join us ! BE THE REVOLUTION!
+                </p>
+
+                <a href="#" class="main-btn mt-4">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-6 mb-4 mb-lg-0 order-lg-2 order-1">
+            <img
+              src="https://i.ndtvimg.com/i/2015-03/air-pollution_600x294_51427105180.png"
+              width="1000"
+              height="1900"
+              class="img-fluid"
+              alt="About Us"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About section exit -->
+
+    <!-- Menu Section STARTS-->
+    <section id="menu" class="offers_wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center mb-4">
+            <h2>Go Green</h2>
+            <p>
+              Checkout Pollution Near You!!!<br class="d-none d-md-block" />
+              Smart Pollution Troop has something for every pollution.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div
+              class="card rounded-0"
+              style="
+                background-image: url('data:image/jpeg;base64,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');
+              "
+            >
+              <div class="offer-text bg-black bg-opacity-50">
+                <h3 class="text-white">Air Pollution</h3>
+                <!-- <h5>$8.50 <del class="fst-italic opacity-75">$10.50</del></h5> -->
+                <h5>Coming Soon</h5>
+                <a
+                  href="https://colab.research.google.com/drive/1nS4khJM59ZGeneOggetQ9RuC0o7oIVco?usp=sharing"
+                  class="main-btn mt-3"
+                  >Explore</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div
+              class="card rounded-0"
+              style="
+                background-image: url('data:image/jpeg;base64,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');
+              "
+            >
+              <div class="offer-text bg-black bg-opacity-50">
+                <h3 class="text-white">Water Pollution</h3>
+                <h5>Coming Soon</h5>
+                <a
+                  href="https://colab.research.google.com/drive/1h4riPrebLfOBdq0aKftX6HCcr-C6zFuH?usp=sharing"
+                  class="main-btn mt-3"
+                  >Explore</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div
+              class="card rounded-0"
+              style="
+                background-image: url('https://img.freepik.com/premium-photo/pollution-concept-garbage-pile-trash-waste-dump-landfill-waste-from-household-global-warning_310913-1110.jpg?w=2000');
+              "
+            >
+              <div class="offer-text bg-black bg-opacity-50">
+                <h3 class="text-white">Garbage Detection</h3>
+                <h5>Coming Soon</h5>
+                <a
+                  href=""
+                  class="main-btn mt-3"
+                  >Explore</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div
+              class="card rounded-0"
+              style="
+                background-image: url('https://www.iberdrola.com/documents/20125/40615/suelo_746x419.jpg/0c7d2a0c-f3a8-0ec0-9ad7-61f7fbf023b6?t=1627531595008');
+              "
+            >
+              <div class="offer-text bg-black bg-opacity-50">
+                <h3 class="text-white">Soil Pollution</h3>
+                <h5>Coming Soon</h5>
+                <a
+                  href="https://forms.gle/FhUHfX1i5u5CKQ7H6"
+                  class="main-btn mt-3"
+                  >Survey</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div
+              class="card rounded-0"
+              style="
+                background-image: url('https://starwalk.space/gallery/images/light-pollution/1920x1080.jpg');
+              "
+            >
+              <div class="offer-text bg-black bg-opacity-50">
+                <h3 class="text-white">Light Pollution</h3>
+                <h5>Coming Soon</h5>
+                <a
+                  href="https://forms.gle/FhUHfX1i5u5CKQ7H6"
+                  class="main-btn mt-3"
+                  >Survey</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div
+              class="card rounded-0"
+              style="
+                background-image: url('https://cdn.risingbd.com/media/imgAll/2017February/bg/sound20170205182237.jpg');
+              "
+            >
+              <div class="offer-text bg-black bg-opacity-50">
+                <h3 class="text-white">Noise Pollution</h3>
+                <h5>Coming Soon</h5>
+                <a
+                  href="https://forms.gle/FhUHfX1i5u5CKQ7H6"
+                  class="main-btn mt-3"
+                  >Survey</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Menu Section exit -->
+
+    <!--Frequently Asked Questions Section -->
+    <section id="review" class="review_wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-7 col-sm-7">
+            <div class="card rounded-0 bg-white p-2">
+              <div
+                id="carouselExampleCaptions"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="carousel-caption">
+                      <!-- <img
+                        src="Images/nolen-gurer-payeshrice-kheer-with-date-palm-jaggery-recipe-main-photo.webp"
+                      /> -->
+                      <h3>Q. What are the natural causes of air pollution?</h3>
+                      <p>
+                        Natural sources of air pollution include forest fires
+                        and volcanoes, which pollute the air with smoke and
+                        dust.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="carousel-caption">
+                      <!-- <img
+                        src="Images/sweet-roasted-makhana-kheer-indian-dessert-recipe-served-bowl-garnished-dry-fruits-tasty-made-using-foxnuts-188700295.jpg"
+                      /> -->
+                      <h3>Q. What Is Pollution Control?</h3>
+                      <p>
+                        Pollution control is a term used in environmental
+                        management. It means the control of emissions and
+                        effluents into air, water or soil.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="carousel-caption">
+                      <!-- <img
+                        src="Images/sweet-roasted-makhana-kheer-indian-dessert-recipe-served-bowl-garnished-dry-fruits-tasty-made-using-foxnuts-188700295.jpg"
+                      /> -->
+                      <h3>Q. How To Control Noise Pollution?</h3>
+                      <p>
+                        There are many methods which help to control the noise
+                        pollution. The source of noise must be reduced. The path
+                        of transmission of sound must be stopped and the
+                        receiver of noise must be safe guarded. The amount of
+                        traffic must be reduced near the residential homes,
+                        educational institutes and hospitals.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="carousel-caption">
+                      <!-- <img
+                        src="Images/sweet-roasted-makhana-kheer-indian-dessert-recipe-served-bowl-garnished-dry-fruits-tasty-made-using-foxnuts-188700295.jpg"
+                      /> -->
+                      <h3>Q. What Are The Effects Of Noise Pollution?</h3>
+                      <p>
+                        There are many side effects of the noise pollution. It
+                        affects the general health and hearing power of the
+                        human beings. The high intensity of noise and its
+                        continued use can cause injury to the ears. It may lead
+                        to the permanent loss of hearing. A large explosion can
+                        cause the injury to tympanic membrane.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="carousel-caption">
+                      <!-- <img
+                        src="Images/sweet-roasted-makhana-kheer-indian-dessert-recipe-served-bowl-garnished-dry-fruits-tasty-made-using-foxnuts-188700295.jpg"
+                      /> -->
+                      <h3>Q. What Is Noise Pollution?</h3>
+                      <p>
+                        The noise pollution is defined as the unwanted sound
+                        which is released into the environment. It disturbs the
+                        human being and cause an adverse effect on the mental
+                        and psychological well being. It is measured in the
+                        units of decibels and is denoted by the dB. The noise
+                        which is more than 115 dB is tolerant.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="carousel-caption">
+                      <!-- <img
+                        src="Images/sweet-roasted-makhana-kheer-indian-dessert-recipe-served-bowl-garnished-dry-fruits-tasty-made-using-foxnuts-188700295.jpg"
+                      /> -->
+                      <h3>Q. How To Control Radioactive Pollution?</h3>
+                      <p>
+                        The radioactive pollution can be controlled by number of
+                        ways. It includes the stoppage of leakage from the
+                        radioactive materials including the nuclear reactors,
+                        industries and laboratories. The disposal of radioactive
+                        material must be safe and secure. They must be stored in
+                        the safe places and must be changed into harmless form.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Frequently Asked Questions Section-->
+
+    <!-- Footer section -->
+    <section id="contact" class="footer_wrapper mt-3 mt-md-0">
+      <div class="container" style="padding-top: 60px">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-6 text-center text-md-start">
+            <div class="footer-logo mb-3 mb-md-0">
+              <!-- <img
+                src="data:image/png;base64,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"
+              /> -->
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <ul
+              class="list-unstyled d-flex justify-content-center justify-content-md-end justify-content-lg-center jus social-icon mb-3 mb-md-0"
+            >
+              <li>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-facebook-f"></i> </a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-linkedin-in"></i> </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="copyright-text text-lg-start text-center mb-3 mb-lg-0">
+              <p class="mb-0">
+                Copyright © 2023 <a href="#">Smart Pollution Tropper</a>. All
+                Rights Reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer section exit -->
+
+    <!-- Bootstrap 5 JS CDN Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom Js Link -->
+    <script>
+      // Header Scroll
+      let nav = document.querySelector(".navbar");
+      window.onscroll = function () {
+        if (document.documentElement.scrollTop > 20) {
+          nav.classList.add("header-scrolled");
+        } else {
+          nav.classList.remove("header-scrolled");
+        }
+      };
+
+      // nav hide
+      let navBar = document.querySelectorAll(".nav-link");
+      let navCollapse = document.querySelector(".navbar-collapse.collapse");
+      navBar.forEach(function (a) {
+        a.addEventListener("click", function () {
+          navCollapse.classList.remove("show");
+        });
+      });
+    </script>
+  </body>
+</html>
